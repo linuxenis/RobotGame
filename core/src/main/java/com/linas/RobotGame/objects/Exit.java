@@ -4,7 +4,8 @@ import com.badlogic.gdx.*;
 import com.linas.RobotGame.systems.*;
 import com.linas.RobotGame.world.*;
 
-public class Exit extends GameObject
+public class
+Exit extends GameObject
 {
     public Exit(int x, int y, float width, float height)
     {

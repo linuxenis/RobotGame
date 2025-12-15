@@ -34,7 +34,6 @@ public class DrawingSystem
         this.gameWorld = gameWorld;
         this.playerState = playerState;
 
-        // Get textures from the asset manager
         this.backgroundTexture = AssetManager.getTexture("ground");
         this.fogTexture = AssetManager.getTexture("fogTile");
         this.worldWidth = viewport.getWorldWidth();
@@ -104,7 +103,13 @@ public class DrawingSystem
 
     private void drawUI()
     {
-        // Energy Bar
+        drawEnergyBar();
+        drawModules();
+        drawKey();
+    }
+
+    private void drawEnergyBar()
+    {
         float barWidth = 2f;
         float barHeight = 0.4f;
         float barX = 0.2f;
@@ -112,8 +117,10 @@ public class DrawingSystem
         spriteBatch.draw(AssetManager.getTexture("energyBarBackground"), barX, barY, barWidth, barHeight);
         float energyPercentage = (float) playerState.getEnergy() / playerState.getMaxEnergy();
         spriteBatch.draw(AssetManager.getTexture("energyBarForeground"), barX, barY, barWidth * energyPercentage, barHeight);
+    }
 
-        // Modules
+    private void drawModules()
+    {
         List<ModuleType> modules = playerState.getModules();
         for (int i = 0; i < modules.size(); i++)
         {
@@ -125,6 +132,10 @@ public class DrawingSystem
                 spriteBatch.draw(moduleTexture, modX, modY, 1, 1);
             }
         }
+    }
+
+    private void drawKey()
+    {
         float keyX = 6f;
         float keyY = 0.2f;
         Texture keyTexture = AssetManager.getTexture("key");

@@ -61,25 +61,16 @@ public class GameWorld
 
     public boolean canMove(GridPoint2 moveCoordinates, GridPoint2 currentCoordinates)
     {
-        GridPoint2 newCoordinates = currentCoordinates.cpy().add(moveCoordinates); //cpy creates a temporary copy
-        if (objectsMap.get(newCoordinates) != null)
+        GridPoint2 newCoordinates = currentCoordinates.cpy().add(moveCoordinates); //.cpy makes a temporary copy
+        List<GameObject> objects = objectsMap.getOrDefault(newCoordinates, Collections.emptyList()); //getOrDefault returns objects of new coordinates or an empty list instead of null
+
+        for (GameObject object : objects)
         {
-            for (GameObject object : objectsMap.get(newCoordinates))
-            {
-                if (object.isSolid())
-                {
-                    if (object instanceof Door)
-                    {
-                        if (!playerState.hasKey())
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                        return false;
-                }
+            if (!object.isPassable(playerState)) {
+                return false;
             }
         }
+
         return true;
     }
 

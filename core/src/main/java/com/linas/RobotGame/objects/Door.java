@@ -38,4 +38,16 @@ public class Door extends GameObject
 
         playerState.setKey(false);
     }
+
+    public boolean isPassable(PlayerState playerState)
+    {
+        if(closed)
+        {
+            return playerState.hasKey();
+        }
+        else
+        {
+            return !solid;
+        }
+    }
 }

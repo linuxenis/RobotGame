@@ -42,4 +42,9 @@ public abstract class GameObject implements Copyable<GameObject>
     {
         return solid;
     }
+
+    public boolean isPassable(PlayerState playerState)
+    {
+        return !solid;
+    }
 }

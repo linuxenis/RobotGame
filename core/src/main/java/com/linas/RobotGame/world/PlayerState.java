@@ -18,6 +18,7 @@ public class PlayerState
     private int moveCost = 1;
 
     private int visibilityLevel = 2;
+
     private GridPoint2 coordinates;
     private Direction facingDirection = Direction.DOWN;
 
